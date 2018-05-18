@@ -27,12 +27,13 @@ class GeneticAlgorithm:
         temp = len(population)
         for i in range(temp):
             first, second = self.select(population), self.select(population)
-            child = self.crossover(first, second)
+            child = self.cross_over(first, second)
             self.mutate(child)
             pop.add(child)
         return pop
 
-    def crossover(self, first: Path, second: Path):
+    @staticmethod
+    def cross_over(first: Path, second: Path):
         temp = len(first)
         child = Path(temp)
         from_index, to_index = int(random() * temp), int(random() * temp)
