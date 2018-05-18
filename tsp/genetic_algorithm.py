@@ -28,7 +28,7 @@ class GeneticAlgorithm:
         for i in range(temp):
             first, second = self.select(population), self.select(population)
             child = self.cross_over(first, second)
-            self.mutate(child)
+            child = self.mutate_once(child)
             pop.add(child)
         return pop
 
@@ -42,13 +42,18 @@ class GeneticAlgorithm:
         child.add(second)
         return child
 
-    def mutate(self, path: Path):
+    def mutate_once(self, path: Path):
         temp = len(path)
-        rn = np.random.binomial(size=temp, p=self.mutation_rate, n=1)
-        for r in rn:
-            if r == 1:
-                from_index, to_index = int(random() * temp), int(random() * temp)
-                path.swap(from_index, to_index)
+        rn = np.random.binomial(size=1, p=self.mutation_rate, n=1)[0]
+        if rn == 1:
+            from_index, to_index = int(random() * temp), int(random() * temp)
+            path.swap(from_index, to_index)
+        return path
+
+    def mutate(self, path: Path):
+        for _ in range(len(path)):
+            path = self.mutate_once(path)
+        return path
 
     def select(self, population: Population):
         pop = Population([])

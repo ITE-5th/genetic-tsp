@@ -1,22 +1,19 @@
 from random import shuffle
 from typing import List
 
-from tsp.city import City, EMPTY_CITY
+from tsp.city import EMPTY_CITY
 
 
 class Path:
     def __init__(self, path):
         self.path = path if isinstance(path, List) else [EMPTY_CITY] * path
-        self.fit = 0
 
     def shuffle(self):
         shuffle(self.path)
         return self
 
     def fitness(self):
-        if self.fit == 0:
-            self.fit = 1 / self.distance()
-        return self.fit
+        return 1 / self.distance()
 
     def distance(self):
         temp = len(self.path)
