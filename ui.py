@@ -41,7 +41,6 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         else:
             s1 = pg.ScatterPlotItem(xs, ys, size=7, pen=pg.mkPen(None), brush=pg.mkBrush(255, 255, 255, 120))
             self.plotWidget.addItem(s1)
-        # self.current_path.reset()
 
     def reset(self):
         self.current_path.reset()
