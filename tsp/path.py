@@ -39,7 +39,7 @@ class Path:
         self.path.append(city)
 
     def to_numpy_array(self):
-        x = y = []
+        x, y = [], []
         for city in self:
             x.append(city.x)
             y.append(city.y)
