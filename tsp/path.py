@@ -1,14 +1,17 @@
 from random import shuffle
 from typing import List
 
+from tsp.city import City, EMPTY_CITY
+
 
 class Path:
     def __init__(self, path):
-        self.path = path if isinstance(path, List) else [-1] * path
+        self.path = path if isinstance(path, List) else [EMPTY_CITY] * path
         self.fit = 0
 
     def shuffle(self):
         shuffle(self.path)
+        return self
 
     def fitness(self):
         if self.fit == 0:
@@ -24,7 +27,7 @@ class Path:
         self.path[from_index], self.path[to_index] = self.path[to_index], self.path[from_index]
 
     def add(self, other_path):
-        empty_indices = [i for i in range(len(self.path)) if self.path[i] == -1]
+        empty_indices = [i for i in range(len(self.path)) if self.path[i] == EMPTY_CITY]
         if len(empty_indices) == 0:
             return
         current_empty = 0
@@ -46,7 +49,10 @@ class Path:
         return len(self.path)
 
     def __str__(self):
-        return ",".join(self.path)
+        return ",".join([str(p) for p in self.path])
 
     def __eq__(self, other):
         return self.path == other.path
+
+    def __iter__(self):
+        return iter(self.path)

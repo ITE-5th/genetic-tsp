@@ -18,3 +18,6 @@ class City:
 
     def __str__(self):
         return f"x = {self.x}, y = {self.y}"
+
+
+EMPTY_CITY = City(None, None)
