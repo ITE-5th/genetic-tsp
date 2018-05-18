@@ -1,4 +1,4 @@
-from cities_reader import CitiesReader
+from misc.cities_reader import CitiesReader
 from tsp.genetic_algorithm import GeneticAlgorithm
 
 if __name__ == '__main__':

@@ -39,7 +39,7 @@ class GeneticAlgorithm:
         from_index, to_index = int(random() * temp), int(random() * temp)
         from_index, to_index = min(from_index, to_index), max(from_index, to_index)
         child[from_index:to_index] = first[from_index:to_index]
-        child.add(second)
+        child.add_path(second)
         return child
 
     def mutate_once(self, path: Path):

@@ -1,6 +1,8 @@
 from random import shuffle
 from typing import List
 
+import numpy as np
+
 from tsp.city import EMPTY_CITY
 
 
@@ -23,7 +25,7 @@ class Path:
     def swap(self, from_index, to_index):
         self.path[from_index], self.path[to_index] = self.path[to_index], self.path[from_index]
 
-    def add(self, other_path):
+    def add_path(self, other_path):
         empty_indices = [i for i in range(len(self.path)) if self.path[i] == EMPTY_CITY]
         if len(empty_indices) == 0:
             return
@@ -32,6 +34,21 @@ class Path:
             if city not in self:
                 self.path[empty_indices[current_empty]] = city
                 current_empty += 1
+
+    def add_city(self, city):
+        self.path.append(city)
+
+    def to_numpy_array(self):
+        x = y = []
+        for city in self:
+            x.append(city.x)
+            y.append(city.y)
+        x, y = np.asarray(x), np.asarray(y)
+        x, y = x.reshape(-1), y.reshape(-1)
+        return x, y
+
+    def reset(self):
+        self.path = []
 
     def __getitem__(self, item):
         return self.path[item]

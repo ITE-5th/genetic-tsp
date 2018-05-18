@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>MainWindow</class>
+    <widget class="QMainWindow" name="MainWindow">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>799</width>
+                <height>514</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>MainWindow</string>
+        </property>
+        <widget class="QWidget" name="centralWidget">
+            <widget class="QGroupBox" name="groupBox">
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>10</y>
+                        <width>261</width>
+                        <height>331</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>GA's Parameters</string>
+                </property>
+                <widget class="QWidget" name="layoutWidget">
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>30</y>
+                            <width>241</width>
+                            <height>281</height>
+                        </rect>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout">
+                        <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout">
+                                <item>
+                                    <widget class="QLabel" name="label">
+                                        <property name="text">
+                                            <string>Iterations:</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QSpinBox" name="iterationsSpinBox">
+                                        <property name="value">
+                                            <number>99</number>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_2">
+                                <item>
+                                    <widget class="QLabel" name="label_2">
+                                        <property name="text">
+                                            <string>Population Size:</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QSpinBox" name="populationSizeSpinBox">
+                                        <property name="value">
+                                            <number>10</number>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_3">
+                                <item>
+                                    <widget class="QLabel" name="label_3">
+                                        <property name="text">
+                                            <string>Tornament Size:</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QSpinBox" name="tournamentSizeSpinBox">
+                                        <property name="value">
+                                            <number>5</number>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_4">
+                                <item>
+                                    <widget class="QLabel" name="label_4">
+                                        <property name="text">
+                                            <string>Mutation Rate:</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QDoubleSpinBox" name="mutationRateSpinBox">
+                                        <property name="value">
+                                            <double>0.150000000000000</double>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                    </layout>
+                </widget>
+            </widget>
+            <widget class="QGroupBox" name="groupBox_2">
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>340</y>
+                        <width>261</width>
+                        <height>161</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Input</string>
+                </property>
+                <widget class="QWidget" name="layoutWidget">
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>40</y>
+                            <width>108</width>
+                            <height>101</height>
+                        </rect>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_2">
+                        <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_6">
+                                <item>
+                                    <widget class="QLabel" name="label_5">
+                                        <property name="text">
+                                            <string>x:</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QDoubleSpinBox" name="pointXSpinBox"/>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_5">
+                                <item>
+                                    <widget class="QLabel" name="label_6">
+                                        <property name="text">
+                                            <string>y:</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QDoubleSpinBox" name="pointYSpinBox"/>
+                                </item>
+                            </layout>
+                        </item>
+                    </layout>
+                </widget>
+                <widget class="QWidget" name="layoutWidget">
+                    <property name="geometry">
+                        <rect>
+                            <x>140</x>
+                            <y>40</y>
+                            <width>111</width>
+                            <height>105</height>
+                        </rect>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_3">
+                        <item>
+                            <widget class="QPushButton" name="addPointButton">
+                                <property name="text">
+                                    <string>Add</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QPushButton" name="solveButton">
+                                <property name="text">
+                                    <string>Solve</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QPushButton" name="resetButton">
+                                <property name="text">
+                                    <string>Reset</string>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </widget>
+            <widget class="QWidget" name="widget" native="true">
+                <property name="geometry">
+                    <rect>
+                        <x>410</x>
+                        <y>140</y>
+                        <width>120</width>
+                        <height>80</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="PlotWidget" name="plotWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>285</x>
+                        <y>31</y>
+                        <width>501</width>
+                        <height>471</height>
+                    </rect>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+    <layoutdefault spacing="6" margin="11"/>
+    <customwidgets>
+        <customwidget>
+            <class>PlotWidget</class>
+            <extends>QGraphicsView</extends>
+            <header>pyqtgraph</header>
+        </customwidget>
+    </customwidgets>
+    <resources/>
+    <connections/>
+</ui>
