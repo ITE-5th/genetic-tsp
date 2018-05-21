@@ -46,6 +46,7 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         solution = ga.evolve(iterations)
         solution.add_city(solution.path[0])
         self.plot_path(solution)
+        self.distanceLabel.setText(str(round(solution.distance(), 3)))
 
     def plot_path(self, path, just_scatter=False):
         xs, ys = path.to_numpy_array()
