@@ -16,6 +16,12 @@ class City:
     def __getitem__(self, item):
         return self.x if item == 0 else self.y
 
+    def __setitem__(self, key, value):
+        if key == 0:
+            self.x = value
+        else:
+            self.y = value
+
     def __str__(self):
         return f"x = {self.x}, y = {self.y}"
 

@@ -29,5 +29,8 @@ class Population:
     def __setitem__(self, key, value):
         self.paths[key] = value
 
+    def __iter__(self):
+        return iter(self.paths)
+
     def __str__(self):
         return "\n".join(str(i) for i in self.paths)
