@@ -38,6 +38,9 @@ class Path:
     def add_city(self, city):
         self.path.append(city)
 
+    def set_path(self, path):
+        self.path = path
+
     def to_numpy_array(self):
         x, y = [], []
         for city in self:

@@ -5,10 +5,12 @@ from tsp.city import City
 
 class CitiesReader:
     @staticmethod
-    def read(file_path: str, sep="\s+"):
+    def read(file_path: str, scaling_factor=1):
         cities = []
         with open(file_path, "r") as f:
-            for line in f:
+            lines = f.readlines()
+            sep = "," if "," in lines[0] else "\s+"
+            for line in lines:
                 temp = re.compile(sep).split(line)
-                cities.append(City(float(temp[0]), float(temp[1])))
+                cities.append(City(float(temp[0]) * scaling_factor, float(temp[1]) * scaling_factor))
         return cities

@@ -12,17 +12,17 @@ class GeneticAlgorithm:
         self.mutation_rate = mutation_rate
         self.tournament_size = tournament_size
 
-    def evolve_for(self, iterations=100):
+    def evolve(self, iterations=100):
         pop = self.population
         fittest = pop.fittest()
         for i in range(iterations):
-            pop = self.evolve(pop)
+            pop = self.evolve_once(pop)
             temp = pop.fittest()
             if temp.fitness() > fittest.fitness():
                 fittest = temp
         return fittest
 
-    def evolve(self, population: Population):
+    def evolve_once(self, population: Population):
         pop = Population([])
         temp = len(population)
         for i in range(temp):
