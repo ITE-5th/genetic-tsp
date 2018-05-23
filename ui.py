@@ -2,7 +2,8 @@ import os
 import sys
 
 import pyqtgraph as pg
-from PyQt5 import uic, QtWidgets
+from PyQt5 import uic, QtWidgets, QtGui
+from PyQt5.QtGui import QBrush
 from PyQt5.QtWidgets import QFileDialog
 
 from misc.cities_reader import CitiesReader
@@ -53,7 +54,10 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         if not just_scatter:
             self.plotWidget.plot(xs, ys, pen=pg.mkPen(color=(255, 255, 255), width=2), clear=True)
         else:
-            s1 = pg.ScatterPlotItem(xs, ys, size=7, pen=pg.mkPen(None), brush=pg.mkBrush(255, 255, 255, 255))
+
+            brush = pg.mkBrush(255, 255, 255, 255)
+            # brush = QBrush(QtGui.QPixmap("./city.png"))
+            s1 = pg.ScatterPlotItem(xs, ys, size=10, pen=pg.mkPen(None), brush=brush)
             self.plotWidget.addItem(s1)
 
     def reset(self):
