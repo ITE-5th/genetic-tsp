@@ -27,6 +27,12 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         self.plotWidget.setYRange(0, Ui.max_range)
         self.setup_events()
 
+    def handle_item_clicked(self, event):
+        pos = self.plotWidget.mapToView(event.pos())
+        x, y = pos.x(), pos.y()
+        self.current_path.add_city(City(x, y))
+        self.plot_path(self.current_path, True)
+
     def setup_events(self):
         maxi = 10000
         self.iterationsSpinBox.setMaximum(maxi)
@@ -37,6 +43,8 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         self.resetButton.clicked.connect(self.reset)
         self.addPointButton.clicked.connect(self.add_point)
         self.loadButton.clicked.connect(self.load)
+        self.loadButton.clicked.connect(self.load)
+        self.plotWidget.mouseReleaseEvent = self.handle_item_clicked
 
     def solve(self):
         if len(self.current_path.path) == 0:
