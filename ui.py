@@ -5,7 +5,8 @@ import time
 
 import pyqtgraph as pg
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QApplication
+from PyQt5.QtWidgets import QFileDialog, QApplication, QGraphicsPixmapItem
+from qtconsole.qt import QtGui
 
 from misc.cities_reader import CitiesReader
 from tsp.city import City
@@ -29,6 +30,9 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         self.plotWidget.setBackground(Ui.background_color)
         self.plotWidget.setXRange(0, Ui.max_range)
         self.plotWidget.setYRange(0, Ui.max_range)
+        self.pixel_map = QtGui.QPixmap("city.png")
+        self.image_scale = 0.1
+
         self.setup_events()
 
     def handle_item_clicked(self, event):
@@ -69,6 +73,7 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         temp = copy.deepcopy(solution)
         temp.add_city(solution[0])
         self.plot_path(temp)
+        self.plot_path(temp, True)
         self.distanceLabel.setText(str(round(temp.distance(), 3)))
         QApplication.processEvents()
 
@@ -77,10 +82,11 @@ class Ui(QtWidgets.QMainWindow, FormClass):
         if not just_scatter:
             self.plotWidget.plot(xs, ys, pen=pg.mkPen(color=(255, 255, 255), width=2), clear=True)
         else:
-            brush = pg.mkBrush(255, 255, 255, 255)
-            # brush = QBrush(QtGui.QPixmap("./city.png"))
-            s1 = pg.ScatterPlotItem(xs, ys, size=10, pen=pg.mkPen(None), brush=brush)
-            self.plotWidget.addItem(s1)
+            for i in range(len(xs)):
+                image = QGraphicsPixmapItem(self.pixel_map)
+                image.scale(self.image_scale, -self.image_scale)
+                image.setPos(xs[i] - self.pixel_map.width() * self.image_scale / 2, ys[i] + self.pixel_map.height() * self.image_scale / 2)
+                self.plotWidget.addItem(image)
 
     def reset(self):
         self.current_path.reset()
