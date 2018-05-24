@@ -1,4 +1,4 @@
-from random import shuffle
+from random import shuffle, random
 from typing import List
 
 import numpy as np
@@ -11,7 +11,7 @@ class Path:
         self.path = path if isinstance(path, List) else [EMPTY_CITY] * path
 
     def shuffle(self):
-        shuffle(self.path)
+        shuffle(self.path, random)
         return self
 
     def fitness(self):
@@ -26,11 +26,11 @@ class Path:
         self.path[from_index], self.path[to_index] = self.path[to_index], self.path[from_index]
 
     def add_path(self, other_path):
-        empty_indices = [i for i in range(len(self.path)) if self.path[i] == EMPTY_CITY]
+        empty_indices = [i for i in range(len(self.path)) if self.path[i] is EMPTY_CITY]
         if len(empty_indices) == 0:
             return
         current_empty = 0
-        for city in other_path:
+        for city in other_path.path:
             if city not in self:
                 self.path[empty_indices[current_empty]] = city
                 current_empty += 1
@@ -60,13 +60,13 @@ class Path:
         self.path[key] = value
 
     def __contains__(self, item):
-        return any(x == item for x in self.path)
+        return any([x == item for x in self.path])
 
     def __len__(self):
         return len(self.path)
 
     def __str__(self):
-        return ",".join([str(p) for p in self.path])
+        return " - ".join([str(p) for p in self.path])
 
     def __eq__(self, other):
         return self.path == other.path
