@@ -2,12 +2,14 @@ from random import random
 
 import numpy as np
 
+from tsp.city import City
 from tsp.path import Path
 from tsp.population import Population
 
 
 class GeneticAlgorithm:
     def __init__(self, cities, population_size=10, mutation_rate=0.015, tournament_size=5):
+        self.population_size = population_size
         self.population = Population.create_initial_population(cities, population_size)
         self.mutation_rate = mutation_rate
         self.tournament_size = tournament_size
@@ -22,14 +24,20 @@ class GeneticAlgorithm:
                 fittest = temp
         return fittest
 
+    def evolve_incrementally(self, iterations=100):
+        pop = self.population
+        for _ in range(iterations):
+            pop = self.evolve_once(pop)
+            yield pop.fittest()
+
     def evolve_once(self, population: Population):
-        pop = Population([])
-        temp = len(population)
-        for i in range(temp):
+        pop = []
+        for i in range(self.population_size):
             first, second = self.select(population), self.select(population)
             child = self.cross_over(first, second)
             child = self.mutate_once(child)
-            pop.add(child)
+            pop.append(child)
+        pop = Population(pop)
         return pop
 
     @staticmethod
@@ -56,8 +64,14 @@ class GeneticAlgorithm:
         return path
 
     def select(self, population: Population):
-        pop = Population([])
-        temp = len(population)
-        for i in range(self.tournament_size):
-            pop.add(population[int(random() * temp)])
-        return pop.fittest()
+        pop = []
+        temp = self.population_size
+        for _ in range(self.tournament_size):
+            pop.append(population[int(random() * temp)])
+        return Population(pop).fittest()
+
+
+if __name__ == '__main__':
+    cities = [City(1, 1), City(1, 2), City(2, 2), City(3, 2)]
+    first, second = Path(cities), Path(cities)
+    print(GeneticAlgorithm.cross_over(first, second))

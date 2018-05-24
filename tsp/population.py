@@ -1,3 +1,4 @@
+from tsp.city import City
 from tsp.path import Path
 
 
@@ -8,7 +9,12 @@ class Population:
 
     @staticmethod
     def create_initial_population(cities, population_size):
-        return Population([Path(cities).shuffle() for _ in range(population_size)])
+        pop = Population([])
+        for i in range(population_size):
+            path = Path(cities)
+            path.shuffle()
+            pop.add(path)
+        return pop
 
     def fittest(self):
         best_path = self.paths[0]
@@ -19,6 +25,9 @@ class Population:
 
     def add(self, path):
         self.paths.append(path)
+
+    def population_sizes(self):
+        return ",".join([str(len(path)) for path in self.paths])
 
     def __len__(self):
         return len(self.paths)
@@ -34,3 +43,8 @@ class Population:
 
     def __str__(self):
         return "\n".join(str(i) for i in self.paths)
+
+
+if __name__ == '__main__':
+    cities = [City(1, 1), City(1, 2), City(2, 2), City(3, 2)]
+    print(Population.create_initial_population(cities, 5))

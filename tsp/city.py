@@ -11,7 +11,9 @@ class City:
         return math.hypot(self.x - other_city.x, self.y - other_city.y)
 
     def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
+        if other is EMPTY_CITY:
+            return False
+        return math.isclose(self.x, other.x) and math.isclose(self.y, other.y)
 
     def __getitem__(self, item):
         return self.x if item == 0 else self.y
@@ -26,4 +28,4 @@ class City:
         return f"x = {self.x}, y = {self.y}"
 
 
-EMPTY_CITY = City(None, None)
+EMPTY_CITY = None
